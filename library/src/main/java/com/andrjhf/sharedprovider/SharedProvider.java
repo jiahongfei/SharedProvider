@@ -11,7 +11,7 @@ import java.util.Set;
 public interface SharedProvider {
 
 
-    public interface Editor {
+    interface Editor {
 
         SharedProvider.Editor putString(String key, String value);
 
@@ -25,7 +25,7 @@ public interface SharedProvider {
 
         <T> SharedProvider.Editor putObject(String key, T t, String clazzName);
 
-        <T> SharedProvider.Editor putList(String key, List<T> t);
+        <E> SharedProvider.Editor putList(String key, List<E> t);
 
         <K,V> SharedProvider.Editor putMap(String key, Map<K, V> map);
 
@@ -52,7 +52,7 @@ public interface SharedProvider {
 
     <T> T getObject(String key, String clazzName);
 
-    <T> List<T> getList(String key);
+    <E> List<E> getList(String key);
 
     <K,V> Map<K, V> getMap(String key);
 
