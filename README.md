@@ -1,0 +1,1 @@
+# SharedProvider一个SharedPreferences 多进程解决方案，内部使用ContentProvider方式实现。
