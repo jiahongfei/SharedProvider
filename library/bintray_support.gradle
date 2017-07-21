@@ -6,7 +6,7 @@ apply plugin: 'com.jfrog.bintray'
 version = "0.0.1"
 
 // 根节点添加
-group = "com.shared.provider"
+group = "com.andrjhf.sharedprovider"
 
 // 根节点添加
 def siteUrl = 'https://github.com/jiahongfei/SharedProvider'    // project homepage

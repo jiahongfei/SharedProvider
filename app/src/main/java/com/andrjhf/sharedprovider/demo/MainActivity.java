@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
     private static final String KEY_13 = "key13";
 
     private SharedProvider sharedProvider;
+    private SharedProvider sharedProvider2;
     private int count = 0;
 
     @Override
@@ -47,89 +48,100 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        List<ArticleK> articleKList = new ArrayList<>();
+        Map<ArticleK, ArticleV> kArticleVMap = new HashMap<>();
+        Set<ArticleK> articleKSet = new HashSet<>();
+
+        ArticleK articleK = new ArticleK();
+        articleK.setTitle("标题");
+        articleK.setDesc("我是一个简介");
+        articleK.setImg("http://www.baidu.com/");
+        articleK.setUrl("http://www.google.com/");
+        articleKList.add(articleK);
+
+        articleK = new ArticleK();
+        articleK.setTitle("标题11111");
+        articleK.setDesc("我是一个简介11111");
+        articleK.setImg("http://www.baidu.com/11111");
+        articleK.setUrl("http://www.google.com/11111");
+        articleKList.add(articleK);
+
+        ArticleV articleV = new ArticleV();
+        articleK.setTitle("标题vvvvv");
+        articleK.setDesc("我是一个简介vvvvv");
+        articleK.setImg("http://www.baidu.com/vvvvv");
+        articleK.setUrl("http://www.google.com/vvvvv");
+
+        kArticleVMap.put(articleK ,articleV);
+
+        articleKSet.add(articleK);
+
         sharedProvider = new SharedProviderImpl(getApplicationContext(), SHARED_NAME);
-        sharedProvider.edit().putString(KEY_1,"jiahongfei_value00000");
-        sharedProvider.edit().putString(KEY_2,"jiahongfei_value111111");
-        sharedProvider.edit().putInt(KEY_3,100);
-        sharedProvider.edit().putBoolean(KEY_4,false);
-        sharedProvider.edit().putLong(KEY_5,3000000L);
-        sharedProvider.edit().putFloat(KEY_6,66.88f);
-        sharedProvider.edit().putString(KEY_6,"keylalalalla");
-        List<TestObject> testObjectList = new ArrayList<>();
-        TestObject testObject = new TestObject();
-        testObject.setTitle("标题");
-        testObject.setDesc("我是一个简介");
-        testObject.setImg("http://www.baidu.com/");
-        testObject.setUrl("http://www.google.com/");
-        testObjectList.add(testObject);
-        testObject = new TestObject();
-        testObject.setTitle("标题1");
-        testObject.setDesc("我是一个简介1");
-        testObject.setImg("http://www.baidu.com/1");
-        testObject.setUrl("http://www.google.com/1");
-        testObjectList.add(testObject);
-        sharedProvider.edit().putObject(KEY_9,testObject, TestObject.class.getName());
-//        sharedProvider.edit().putObject(KEY_10, testObjectList, List.class.getName());
-        sharedProvider.edit().putList(KEY_11,testObjectList);
-        TestObject tmpTestObject = sharedProvider.getObject(KEY_9,TestObject.class.getName());
-        List<TestObject> testObjectList1 = sharedProvider.getList(KEY_11);
-//        List<TestObject> tmpTestObjects = sharedProvider.getObject(KEY_10,List.class.getName());
-//        Log.e(TAG,tmpTestObjects.toString());
+        sharedProvider.edit().putString(KEY_1, "value1");
+        sharedProvider.edit().putInt(KEY_2, 100);
+        sharedProvider.edit().putLong(KEY_3, 100000000L);
+        sharedProvider.edit().putFloat(KEY_4, 66.66F);
+        sharedProvider.edit().putBoolean(KEY_5, false);
+        sharedProvider.edit().putObject(KEY_6, articleK, ArticleK.class.getName());
+        sharedProvider.edit().putList(KEY_7, articleKList);
+        sharedProvider.edit().putMap(KEY_8, kArticleVMap);
+        sharedProvider.edit().putSet(KEY_9, articleKSet);
+        sharedProvider.edit().putString(KEY_10, "value10");
 
-        Map<TestObject,TestObjectV> mapObject = new HashMap<>();
-        TestObjectV testObjectV = new TestObjectV();
-        testObjectV.setUrl("urlurl");
-        testObjectV.setImg("img");
-        testObjectV.setDesc("desc");
-        testObjectV.setTitle("title");
-        mapObject.put(testObject,testObjectV);
-
-        SharedProvider sharedProvider2 = new SharedProviderImpl(getApplicationContext(), SHARED_NAME2);
-        sharedProvider2.edit().putString(KEY_1, "shared2222222222");
-        sharedProvider2.edit().putInt(KEY_2, 300);
-        sharedProvider2.edit().putFloat(KEY_3, 2.33f);
-        testObject = new TestObject();
-        testObject.setTitle("标题");
-        testObject.setDesc("我是一个简介");
-        testObject.setImg("http://www.baidu.com/");
-        testObject.setUrl("http://www.google.com/");
-        sharedProvider2.edit().putObject(KEY_4, testObject,TestObject.class.getName());
-
-        sharedProvider2.edit().putMap(KEY_12,mapObject);
-
-        sharedProvider2.getMap(KEY_12);
-
-        Set<TestObjectV> set = new HashSet<>();
-        set.add(testObjectV);
-        sharedProvider2.edit().putSet(KEY_13, set);
-
-        sharedProvider2.getSet(KEY_13);
-
-//        sharedProvider.edit().remove(KEY_1);
-
-        Map<String, ?> map = sharedProvider.getAll();
-        Map<String, ?> map1 = sharedProvider2.getAll();
+        sharedProvider.edit().remove(KEY_10);
 
 //        sharedProvider.edit().clear();
 
-        Intent intent = new Intent(MainActivity.this, MyService.class);
-        startService(intent);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    int keyInt7 = sharedProvider.getInt(KEY_7, -1);
-                    Log.e(TAG, KEY_7 + " : " + keyInt7);
-//                    sharedProvider.edit().putInt(KEY_7, count++);
-                }
-            }
-        }).start();
+        sharedProvider2 = new SharedProviderImpl(getApplicationContext(), SHARED_NAME2);
+        sharedProvider2.edit().putString(KEY_1, "value1");
+        sharedProvider2.edit().putInt(KEY_2, 100);
+        sharedProvider2.edit().putLong(KEY_3, 100000000L);
+        sharedProvider2.edit().putFloat(KEY_4, 66.66F);
+        sharedProvider2.edit().putBoolean(KEY_5, true);
+        sharedProvider2.edit().putObject(KEY_6, articleK, ArticleK.class.getName());
+        sharedProvider2.edit().putList(KEY_7, articleKList);
+        sharedProvider2.edit().putMap(KEY_8, kArticleVMap);
+        sharedProvider2.edit().putSet(KEY_9, articleKSet);
+        sharedProvider2.edit().putString(KEY_10, "value10");
+
+        Log.e(TAG, KEY_1 + " : " + sharedProvider2.getString(KEY_1,"default_key_1"));
+        Log.e(TAG, KEY_2 + " : " + sharedProvider2.getInt(KEY_2,-100));
+        Log.e(TAG, KEY_3 + " : " + sharedProvider2.getLong(KEY_3,-1000L));
+        Log.e(TAG, KEY_4 + " : " + sharedProvider2.getFloat(KEY_4,-55.55F));
+        Log.e(TAG, KEY_5 + " : " + sharedProvider2.getBoolean(KEY_5,false));
+        Log.e(TAG, KEY_6 + " : " + sharedProvider2.getObject(KEY_6, ArticleK.class.getName()));
+        Log.e(TAG, KEY_7 + " : " + sharedProvider2.getList(KEY_7));
+        Log.e(TAG, KEY_8 + " : " + sharedProvider2.getMap(KEY_8));
+        Log.e(TAG, KEY_9 + " : " + sharedProvider2.getSet(KEY_9));
+        Log.e(TAG, KEY_10 + " : " + sharedProvider2.getString(KEY_10,"default10"));
+        Log.e(TAG, "ALL" + " : " + sharedProvider2.getAll());
+
+
+        //如果获取类型错误会返回默认值，没有类型转换
+        Log.e(TAG, "Default " + KEY_2 + " : " + sharedProvider2.getLong(KEY_2,-1000L));
+        Log.e(TAG, "Default " + KEY_3 + " : " + sharedProvider2.getInt(KEY_3,-100));
+
+        sharedProvider2.contains(KEY_1);
+
+//        Intent intent = new Intent(MainActivity.this, MyService.class);
+//        startService(intent);
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (true) {
+//                    try {
+//                        TimeUnit.MILLISECONDS.sleep(500);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    int keyInt7 = sharedProvider.getInt(KEY_7, -1);
+//                    Log.e(TAG, KEY_7 + " : " + keyInt7);
+////                    sharedProvider.edit().putInt(KEY_7, count++);
+//                }
+//            }
+//        }).start();
     }
 
     public void onClick(View view) {

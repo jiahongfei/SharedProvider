@@ -1,10 +1,12 @@
 package com.andrjhf.sharedprovider.demo;
 
+import java.io.Serializable;
+
 /**
- * Created by jiahongfei on 2017/7/20.
+ * Created by jiahongfei on 2017/7/19.
  */
 
-public class TestObjectV {
+public class ArticleK implements Serializable {
 
     private String title;
     private String desc;
