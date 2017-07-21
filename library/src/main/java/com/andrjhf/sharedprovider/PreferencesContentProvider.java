@@ -22,8 +22,6 @@ public class PreferencesContentProvider extends ContentProvider {
         /*MIME*/
         public static final String CONTENT_TYPE = "vnd.android.cursor.sharedprovider/vnd.shared.provider";
 
-        /*Default sort order*/
-        public static final String DEFAULT_SORT_ORDER = "_id asc";
     }
 
     private static final UriMatcher uriMatcher;

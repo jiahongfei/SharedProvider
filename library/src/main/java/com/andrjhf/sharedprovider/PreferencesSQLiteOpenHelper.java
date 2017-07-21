@@ -58,10 +58,5 @@ class PreferencesSQLiteOpenHelper extends SQLiteOpenHelper {
         public static final String COLUMN_NAME_SHARED_PROVIDER_VALUE = "column_name_shared_provider_value";
 
         public static final String COLUMN_NAME_SHARED_PROVIDER_VALUE_CLASS = "column_name_shared_provider_value_class";
-
-//        public static final String COLUMN_NAME_VALUE_INTEGER = "column_name_value_integer";
-//        public static final String COLUMN_NAME_VALUE_LONG = "column_name_value_long";
-//        public static final String COLUMN_NAME_VALUE_FLOAT = "column_name_value_float";
-//        public static final String COLUMN_NAME_VALUE_BOOLEAN = "column_name_value_boolean";
     }
 }
