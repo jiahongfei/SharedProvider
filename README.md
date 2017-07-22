@@ -1,7 +1,7 @@
 ### SharedProvider一个SharedPreferences 多进程解决方案，内部使用ContentProvider方式实现。
 ##### 接入方法：
-在***AndroidManifest.xml***中增加如下方法,标准的***provider***
-***android:authorities="com.andrjhf.sharedprovider"*** 不能修改
+在AndroidManifest.xml中增加如下方法,标准的provider
+android:authorities="com.andrjhf.sharedprovider"不能修改
 ```
  <provider
 	android:name="com.andrjhf.sharedprovider.PreferencesContentProvider"
