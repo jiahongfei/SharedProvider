@@ -1,7 +1,10 @@
 package com.andrjhf.sharedprovider.demo;
 
 import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,13 +13,14 @@ import android.widget.Toast;
 import com.andrjhf.sharedprovider.SharedProvider;
 import com.andrjhf.sharedprovider.SharedProviderImpl;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends Activity {
 
@@ -72,7 +76,7 @@ public class MainActivity extends Activity {
         articleK.setImg("http://www.baidu.com/vvvvv");
         articleK.setUrl("http://www.google.com/vvvvv");
 
-        kArticleVMap.put(articleK ,articleV);
+        kArticleVMap.put(articleK, articleV);
 
         articleKSet.add(articleK);
 
@@ -105,22 +109,22 @@ public class MainActivity extends Activity {
         sharedProvider2.edit().putSet(KEY_9, articleKSet);
         sharedProvider2.edit().putString(KEY_10, "value10");
 
-        Log.e(TAG, KEY_1 + " : " + sharedProvider2.getString(KEY_1,"default_key_1"));
-        Log.e(TAG, KEY_2 + " : " + sharedProvider2.getInt(KEY_2,-100));
-        Log.e(TAG, KEY_3 + " : " + sharedProvider2.getLong(KEY_3,-1000L));
-        Log.e(TAG, KEY_4 + " : " + sharedProvider2.getFloat(KEY_4,-55.55F));
-        Log.e(TAG, KEY_5 + " : " + sharedProvider2.getBoolean(KEY_5,false));
+        Log.e(TAG, KEY_1 + " : " + sharedProvider2.getString(KEY_1, "default_key_1"));
+        Log.e(TAG, KEY_2 + " : " + sharedProvider2.getInt(KEY_2, -100));
+        Log.e(TAG, KEY_3 + " : " + sharedProvider2.getLong(KEY_3, -1000L));
+        Log.e(TAG, KEY_4 + " : " + sharedProvider2.getFloat(KEY_4, -55.55F));
+        Log.e(TAG, KEY_5 + " : " + sharedProvider2.getBoolean(KEY_5, false));
         Log.e(TAG, KEY_6 + " : " + sharedProvider2.getObject(KEY_6, ArticleK.class.getName()));
         Log.e(TAG, KEY_7 + " : " + sharedProvider2.getList(KEY_7));
         Log.e(TAG, KEY_8 + " : " + sharedProvider2.getMap(KEY_8));
         Log.e(TAG, KEY_9 + " : " + sharedProvider2.getSet(KEY_9));
-        Log.e(TAG, KEY_10 + " : " + sharedProvider2.getString(KEY_10,"default10"));
+        Log.e(TAG, KEY_10 + " : " + sharedProvider2.getString(KEY_10, "default10"));
         Log.e(TAG, "ALL" + " : " + sharedProvider2.getAll());
 
 
         //如果获取类型错误会返回默认值，没有类型转换
-        Log.e(TAG, "Default " + KEY_2 + " : " + sharedProvider2.getLong(KEY_2,-1000L));
-        Log.e(TAG, "Default " + KEY_3 + " : " + sharedProvider2.getInt(KEY_3,-100));
+        Log.e(TAG, "Default " + KEY_2 + " : " + sharedProvider2.getLong(KEY_2, -1000L));
+        Log.e(TAG, "Default " + KEY_3 + " : " + sharedProvider2.getInt(KEY_3, -100));
 
         sharedProvider2.contains(KEY_1);
 
@@ -142,10 +146,61 @@ public class MainActivity extends Activity {
 //                }
 //            }
 //        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String string = getFromAssets("test.txt");
+
+                SharedPreferences sharedPreferences = getSharedPreferences("app", Context.MODE_PRIVATE);
+
+                long start = System.currentTimeMillis();
+//                sharedPreferences.edit().putString(string, "value").commit();
+//                Log.e(TAG, "set preferences end - start = " + (System.currentTimeMillis() - start));
+//
+//                start = System.currentTimeMillis();
+//                sharedProvider2.edit().putString(string, "value");
+//                Log.e(TAG, "set provider end - start = " + (System.currentTimeMillis() - start));
+
+                start = System.currentTimeMillis();
+                sharedPreferences.edit().putString("key", "1111111111111111111111111111111").commit();
+                Log.e(TAG, "set preferences end - start = " + (System.currentTimeMillis() - start));
+
+                start = System.currentTimeMillis();
+                sharedProvider2.edit().putString("key", "1111111111111111111111111111111");
+                Log.e(TAG, "set provider end - start = " + (System.currentTimeMillis() - start));
+
+//                start = System.currentTimeMillis();
+//                String valuepre = sharedPreferences.getString("key", "");
+//                Log.e(TAG, "get preferences end - start = " + (System.currentTimeMillis() - start));
+//
+//                start = System.currentTimeMillis();
+//                valuepre = sharedProvider2.getString("key", "");
+//                Log.e(TAG, "get provider end - start = " + (System.currentTimeMillis() - start));
+            }
+        }).start();
+
+
     }
 
     public void onClick(View view) {
         sharedProvider.edit().putString(KEY_8, "sdfsdfsdfsdf");
         Toast.makeText(this, KEY_8, Toast.LENGTH_SHORT).show();
+    }
+
+
+    public String getFromAssets(String fileName) {
+        try {
+            InputStreamReader inputReader = new InputStreamReader(getResources().getAssets().open(fileName));
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line = "";
+            String Result = "";
+            while ((line = bufReader.readLine()) != null)
+                Result += line;
+            return Result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

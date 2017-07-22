@@ -20,6 +20,12 @@
             android:enabled="true"
             android:exported="false"
             android:process=":myservice"></service>
+
+        <provider
+            android:name="com.andrjhf.sharedprovider.PreferencesContentProvider"
+            android:authorities="com.andrjhf.sharedprovider"
+            android:enabled="true"
+            android:exported="false"></provider>
     </application>
 
 

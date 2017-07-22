@@ -5,11 +5,7 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true">
-        <provider
-            android:name=".PreferencesContentProvider"
-            android:authorities="com.andrjhf.sharedprovider"
-            android:enabled="true"
-            android:exported="false"></provider>
+
     </application>
 
 </manifest>
