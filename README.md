@@ -1,7 +1,7 @@
 ### SharedProvider一个SharedPreferences 多进程解决方案，内部使用ContentProvider方式实现。
-#####接入方法：
-在*AndroidManifest.xml*中增加如下方法,标准的*provider*
-*android:authorities="com.andrjhf.sharedprovider”*不能修改
+##### 接入方法：
+在* AndroidManifest.xml *中增加如下方法,标准的* provider *
+* android:authorities="com.andrjhf.sharedprovider" *不能修改
 ```
  <provider
 	android:name="com.andrjhf.sharedprovider.PreferencesContentProvider"
@@ -9,7 +9,7 @@
 	android:enabled="true"
 	android:exported="false"></provider>
 ```
-#####测试方法：
+##### 测试方法：
 ```
 public class MainActivity extends Activity {
 	    public static final String TAG = "MainActivity";
