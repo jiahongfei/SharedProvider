@@ -1,6 +1,4 @@
-// 根节点添加
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
+
 
 // 根节点添加
 def siteUrl = 'https://github.com/jiahongfei/SharedProvider'    // project homepage
@@ -20,6 +18,16 @@ def developerEmail = 'jiahongfeinew@163.com'
 def licenseName = 'The Apache Software License, Version 2.0'
 def licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
 def allLicenses = ["Apache-2.0"]
+
+
+
+
+
+
+
+// 根节点添加
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
