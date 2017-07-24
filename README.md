@@ -5,16 +5,31 @@
 <dependency>
   <groupId>com.andrjhf.sharedprovider</groupId>
   <artifactId>sharedprovider-library</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle via JCenter
 ```
-compile 'com.andrjhf.sharedprovider:sharedprovider-library:1.0.0'
+compile 'com.andrjhf.sharedprovider:sharedprovider-library:1.0.1'
 ```
 
 [简书地址点这里](http://www.jianshu.com/p/a47c05b0997a)
+
+### 编译版本和最小支持版本
+```
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+    
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 22
+        ...
+    }
+}
+````
+
 ##### 接入方法：
 在AndroidManifest.xml中增加如下方法,标准的provider
 android:authorities="com.andrjhf.sharedprovider"不能修改
