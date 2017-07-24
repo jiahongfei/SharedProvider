@@ -1,14 +1,12 @@
-
-
 // 根节点添加
+def package_version = versions.name  // JCenter的VersionId
 def siteUrl = 'https://github.com/jiahongfei/SharedProvider'    // project homepage
 def gitUrl = 'https://github.com/jiahongfei/SharedProvider.git' // project git
 def project_name = 'SharedProvider'
 def package_repo = 'maven' // bintray上的仓库名，一般为maven
 def package_type = 'aar'  // 输出类型
 def package_group = 'com.andrjhf.sharedprovider' // JCenter的GroupId
-def package_artifact = 'sharedprovider-librar' // JCenter的ArtifactId
-def package_version = '0.0.3'  // JCenter的VersionId
+def package_artifact = 'sharedprovider-library' // JCenter的ArtifactId
 def package_description = 'SharedProvider'
 //开发者信息
 def developerId = 'jiahongfei'
@@ -21,13 +19,12 @@ def allLicenses = ["Apache-2.0"]
 
 
 
-
-
-
-
 // 根节点添加
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
+
+version = package_version
+group = package_group
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -54,7 +51,7 @@ install {
             project {
                 packaging = package_type
                 name = project_name
-                url =  siteUrl
+                url  = siteUrl
                 // Set your license
                 licenses {
                     license {
@@ -63,9 +60,9 @@ install {
                     }
                 }
                 // 根节点添加
-                groupId = package_group
+                groupId  = package_group
                 artifactId = package_artifact
-                version = package_version
+
                 developers {
                     developer { //填写的一些基本信息
                         id = developerId
