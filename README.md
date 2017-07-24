@@ -5,13 +5,13 @@
 <dependency>
   <groupId>com.andrjhf.sharedprovider</groupId>
   <artifactId>sharedprovider-library</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle via JCenter
 ```
-compile 'com.andrjhf.sharedprovider:sharedprovider-library:1.0.1'
+compile 'com.andrjhf.sharedprovider:sharedprovider-library:1.0.2'
 ```
 
 [简书地址点这里](http://www.jianshu.com/p/a47c05b0997a)
