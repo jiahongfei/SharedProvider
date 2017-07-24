@@ -1,4 +1,19 @@
 ### SharedProvider一个SharedPreferences 多进程解决方案，内部使用ContentProvider方式实现。
+
+### Maven
+```
+<dependency>
+  <groupId>com.andrjhf.sharedprovider</groupId>
+  <artifactId>sharedprovider-library</artifactId>
+  <version>1.0.0</version>
+  <type>pom</type>
+</dependency>
+```
+### Gradle via JCenter
+```
+compile 'com.andrjhf.sharedprovider:sharedprovider-library:1.0.0'
+```
+
 [简书地址点这里](http://www.jianshu.com/p/a47c05b0997a)
 ##### 接入方法：
 在AndroidManifest.xml中增加如下方法,标准的provider
